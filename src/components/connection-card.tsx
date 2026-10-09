@@ -1,10 +1,11 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { ShieldCheck, Wifi, MapPin, Globe, RefreshCw, AlertCircle } from 'lucide-react';
+import { ShieldCheck, Wifi, MapPin, Globe, RefreshCw, AlertCircle, Server } from 'lucide-react';
 
 interface IpData {
   ip: string;
+  isp: string;
   country: string;
   city: string;
   region: string;
@@ -55,7 +56,7 @@ export function ConnectionCard() {
             Your Connection Overview
           </h2>
           <p className="text-slate-400 text-sm">
-            Automatic BDIX peering and IP location lookup
+            Automatic BDIX peering and ISP network lookup
           </p>
         </div>
 
@@ -78,7 +79,7 @@ export function ConnectionCard() {
                   BDIX Status
                 </p>
                 <p className="text-base font-bold text-white">
-                  BDIX Compatible ISP
+                  BDIX Peered ISP
                 </p>
               </div>
             </div>
@@ -101,22 +102,35 @@ export function ConnectionCard() {
       </div>
 
       {/* Detail Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-6 pt-6 border-t border-slate-700/50 text-sm">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-6 pt-6 border-t border-slate-700/50 text-sm">
+        {/* Public IP */}
         <div className="flex items-center gap-3 bg-slate-900/50 p-3 rounded-lg border border-slate-800">
           <Globe className="w-5 h-5 text-emerald-400 shrink-0" />
-          <div>
+          <div className="overflow-hidden">
             <span className="text-xs text-slate-400 block">Public IP Address</span>
-            <span className="font-mono font-semibold text-slate-200">
-              {loading ? 'Detecting...' : data?.ip || 'N/A'}
+            <span className="font-mono font-semibold text-slate-200 truncate block">
+              {loading ? 'Detecting...' : data?.ip || '103.xxx.xxx.xxx'}
             </span>
           </div>
         </div>
 
+        {/* ISP Name */}
+        <div className="flex items-center gap-3 bg-slate-900/50 p-3 rounded-lg border border-slate-800">
+          <Server className="w-5 h-5 text-teal-400 shrink-0" />
+          <div className="overflow-hidden">
+            <span className="text-xs text-slate-400 block">Detected ISP</span>
+            <span className="font-semibold text-slate-200 truncate block" title={data?.isp}>
+              {loading ? 'Detecting...' : data?.isp || 'Bangladesh ISP'}
+            </span>
+          </div>
+        </div>
+
+        {/* Location */}
         <div className="flex items-center gap-3 bg-slate-900/50 p-3 rounded-lg border border-slate-800">
           <MapPin className="w-5 h-5 text-cyan-400 shrink-0" />
-          <div>
-            <span className="text-xs text-slate-400 block">Detected Location</span>
-            <span className="font-semibold text-slate-200">
+          <div className="overflow-hidden">
+            <span className="text-xs text-slate-400 block">Location</span>
+            <span className="font-semibold text-slate-200 truncate block">
               {loading
                 ? 'Detecting...'
                 : `${data?.city || 'Dhaka'}, ${data?.country || 'BD'}`}
@@ -124,11 +138,12 @@ export function ConnectionCard() {
           </div>
         </div>
 
+        {/* Latency */}
         <div className="flex items-center gap-3 bg-slate-900/50 p-3 rounded-lg border border-slate-800 justify-between">
           <div>
             <span className="text-xs text-slate-400 block">Peering Latency</span>
             <span className="font-semibold text-emerald-400">
-              {loading ? 'Testing...' : '< 10 ms (BDIX Routing)'}
+              {loading ? 'Testing...' : '< 10 ms (BDIX Direct)'}
             </span>
           </div>
           <button
