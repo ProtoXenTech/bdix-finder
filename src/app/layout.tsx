@@ -13,10 +13,12 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'BDIX Finder | Bangladesh ISP & FTP Server Directory',
+  title: 'BDIX Finder | ProtoXen — Bangladesh ISP & FTP Directory',
   description:
-    'Check your Bangladesh internet connection, BDIX peering status, and discover curated high-speed BDIX FTP, Live TV, Sports, and Software servers.',
+    'A ProtoXen Web Engineering Project. Check your Bangladesh internet connection, BDIX peering status, and discover curated high-speed BDIX FTP, Live TV, Sports, and Software servers.',
+  authors: [{ name: 'ProtoXen', url: 'https://protoxen.com/' }],
   keywords: [
+    'ProtoXen',
     'BDIX',
     'BDIX Tester',
     'BDIX FTP List',
