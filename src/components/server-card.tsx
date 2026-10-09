@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { BdixServer } from '@/data/servers';
-import { ExternalLink, Copy, Check, Radio } from 'lucide-react';
+import { ExternalLink, Copy, Check, Radio, Layers } from 'lucide-react';
 
 interface ServerCardProps {
   server: BdixServer;
@@ -13,8 +13,8 @@ export function ServerCard({ server }: ServerCardProps) {
   const [pingStatus, setPingStatus] = useState<'idle' | 'testing' | 'online' | 'offline'>('idle');
   const [pingMs, setPingMs] = useState<number | null>(null);
 
-  const handleCopy = () => {
-    navigator.clipboard.writeText(server.url);
+  const handleCopy = (text: string) => {
+    navigator.clipboard.writeText(text);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
@@ -84,6 +84,25 @@ export function ServerCard({ server }: ServerCardProps) {
         <p className="text-slate-400 text-sm leading-relaxed mb-4">
           {server.description}
         </p>
+
+        {/* Mirror URLs Pill */}
+        {server.mirrorUrls && server.mirrorUrls.length > 0 && (
+          <div className="mb-4 flex items-center gap-2 flex-wrap text-xs text-slate-400 bg-slate-950/60 p-2.5 rounded-lg border border-slate-800">
+            <Layers className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
+            <span className="font-semibold text-slate-300">Mirrors:</span>
+            {server.mirrorUrls.map((mirror, idx) => (
+              <a
+                key={idx}
+                href={mirror}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-cyan-400 hover:underline font-mono"
+              >
+                Mirror {idx + 1}
+              </a>
+            ))}
+          </div>
+        )}
       </div>
 
       <div className="flex items-center gap-2 pt-3 border-t border-slate-800/80 mt-auto">
@@ -98,7 +117,7 @@ export function ServerCard({ server }: ServerCardProps) {
         </a>
 
         <button
-          onClick={handleCopy}
+          onClick={() => handleCopy(server.url)}
           className="p-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700/50 transition"
           title="Copy URL"
         >
