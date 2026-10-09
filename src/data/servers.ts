@@ -1,4 +1,4 @@
-export type ServerCategory = 'all' | 'ftp' | 'tv' | 'sports' | 'software';
+export type ServerCategory = 'all' | 'ftp' | 'tv' | 'sports' | 'software' | 'speedtest';
 
 export interface BdixServer {
   id: string;
@@ -10,6 +10,7 @@ export interface BdixServer {
   featured?: boolean;
   ispNote?: string;
   mirrorUrls?: string[];
+  providerIsp?: string;
 }
 
 export const CATEGORIES: { id: ServerCategory; label: string; icon: string }[] = [
@@ -18,6 +19,7 @@ export const CATEGORIES: { id: ServerCategory; label: string; icon: string }[] =
   { id: 'tv', label: 'Live TV & IPTV', icon: 'Tv' },
   { id: 'sports', label: 'Live Sports', icon: 'Trophy' },
   { id: 'software', label: 'Software & ISOs', icon: 'Download' },
+  { id: 'speedtest', label: 'BDIX Speed Test', icon: 'Gauge' },
 ];
 
 export const BDIX_SERVERS: BdixServer[] = [
@@ -30,6 +32,7 @@ export const BDIX_SERVERS: BdixServer[] = [
     description: 'Top-tier BDIX FTP server featuring massive collections of HD movies, TV shows, and games.',
     badge: '⭐ Top 1',
     featured: true,
+    providerIsp: 'Business Network',
     mirrorUrls: ['http://103.58.73.6', 'http://server1.ftpbd.net'],
   },
   {
@@ -40,6 +43,7 @@ export const BDIX_SERVERS: BdixServer[] = [
     description: 'One of Bangladesh’s largest BDIX FTP platforms with high-speed movie and series streaming.',
     badge: '⭐ Top 2',
     featured: true,
+    providerIsp: 'Circle Network',
     mirrorUrls: ['http://new.circleftp.net', 'http://103.170.204.84'],
   },
   {
@@ -50,6 +54,7 @@ export const BDIX_SERVERS: BdixServer[] = [
     description: 'High-speed media server with 4K movies, series, software, and anime archives.',
     badge: '⭐ Top 3',
     featured: true,
+    providerIsp: 'SamOnline',
     mirrorUrls: ['https://samftp.com', 'http://172.16.50.4'],
   },
   {
@@ -60,6 +65,7 @@ export const BDIX_SERVERS: BdixServer[] = [
     description: 'Popular regional and national BDIX FTP portal with ultra-fast streaming.',
     badge: 'Popular',
     featured: true,
+    providerIsp: 'Cogent Broadband',
     mirrorUrls: ['http://bokasoka.net'],
   },
   {
@@ -70,6 +76,7 @@ export const BDIX_SERVERS: BdixServer[] = [
     description: 'Discovery Network BDIX media portal with multi-mirror fast playback.',
     badge: 'Fast Mirror',
     featured: true,
+    providerIsp: 'Discovery Net',
     mirrorUrls: ['http://dflix.discoveryftp.net', 'http://cds1.discoveryftp.net'],
   },
   {
@@ -79,6 +86,7 @@ export const BDIX_SERVERS: BdixServer[] = [
     category: 'ftp',
     description: 'Dedicated entertainment server for OneNet and OneSky broadband subscribers.',
     featured: true,
+    providerIsp: 'OneNet / OneSky',
   },
   {
     id: 'ctgmovies',
@@ -87,6 +95,7 @@ export const BDIX_SERVERS: BdixServer[] = [
     category: 'ftp',
     description: 'Chittagong region BDIX entertainment portal with vast film archives.',
     badge: 'CTG Region',
+    providerIsp: 'Digital Dot Net',
   },
   {
     id: 'ebox-live',
@@ -95,6 +104,7 @@ export const BDIX_SERVERS: BdixServer[] = [
     category: 'ftp',
     description: 'High-bandwidth file server and online media streaming directory.',
     featured: true,
+    providerIsp: 'Exord Online',
   },
   {
     id: 'dhakamovie',
@@ -102,6 +112,7 @@ export const BDIX_SERVERS: BdixServer[] = [
     url: 'http://dhakamovie.com',
     category: 'ftp',
     description: 'Antaranga Dot Com BDIX portal for movies, drama, and TV shows.',
+    providerIsp: 'Antaranga Net',
   },
   {
     id: 'nagordola',
@@ -111,6 +122,7 @@ export const BDIX_SERVERS: BdixServer[] = [
     description: 'Carnival Broadband BDIX media hub with bufferless local streaming.',
     badge: 'Carnival',
     featured: true,
+    providerIsp: 'Carnival Internet',
   },
   {
     id: 'ihub-live',
@@ -118,6 +130,7 @@ export const BDIX_SERVERS: BdixServer[] = [
     url: 'http://ihub.live',
     category: 'ftp',
     description: 'Inspire Broadband media and game download server.',
+    providerIsp: 'Inspire Broadband',
   },
   {
     id: 'moviedom-race',
@@ -127,6 +140,7 @@ export const BDIX_SERVERS: BdixServer[] = [
     description: 'Race Online Ltd BDIX media streaming and file sharing server.',
     badge: 'Race Net',
     featured: true,
+    providerIsp: 'Race Online',
     mirrorUrls: ['http://moviehaat.net'],
   },
   {
@@ -135,6 +149,7 @@ export const BDIX_SERVERS: BdixServer[] = [
     url: 'http://dflix.live',
     category: 'ftp',
     description: 'Dot Internet BDIX entertainment hub with fast movie playback.',
+    providerIsp: 'Dot Internet',
   },
   {
     id: 'mazeda-ftp',
@@ -142,6 +157,7 @@ export const BDIX_SERVERS: BdixServer[] = [
     url: 'http://ftpweb.mazedanetworks.net',
     category: 'ftp',
     description: 'Mazeda Networks local BDIX file and movie server.',
+    providerIsp: 'Mazeda Networks',
   },
 
   // Live TV & IPTV
@@ -161,6 +177,7 @@ export const BDIX_SERVERS: BdixServer[] = [
     category: 'tv',
     description: 'Live HD Bangladeshi, Indian, and International TV channels over BDIX.',
     featured: true,
+    providerIsp: 'SamOnline',
   },
   {
     id: 'bdix-tv-net',
@@ -197,6 +214,7 @@ export const BDIX_SERVERS: BdixServer[] = [
     category: 'software',
     description: 'Fast BDIX mirror for PC software, games, and OS ISO images.',
     featured: true,
+    providerIsp: 'X-Press Tech',
   },
   {
     id: 'samonline-soft',
@@ -204,6 +222,7 @@ export const BDIX_SERVERS: BdixServer[] = [
     url: 'http://software.samonline.com.bd',
     category: 'software',
     description: 'Dedicated software archive with high-bandwidth BDIX downloads.',
+    providerIsp: 'SamOnline',
   },
   {
     id: 'ihub-games',
@@ -211,5 +230,6 @@ export const BDIX_SERVERS: BdixServer[] = [
     url: 'http://sg-cdn.ihub.live:8787/download/games',
     category: 'software',
     description: 'High-speed game installer downloads over BDIX peering.',
+    providerIsp: 'Inspire Broadband',
   },
 ];
